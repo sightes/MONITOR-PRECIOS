@@ -76,6 +76,7 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
           tt['Producto']='HIP-MIX'+ str(PLZFIJO)+'Y'
       else :
           tt['Producto']='HIP-FIJA'
+      tt=tt.round(2)
       return(tt)#,str(r.data).replace('\\n','').replace('\\r','').replace('\\t',''))
 
 
