@@ -1,14 +1,14 @@
-import pandas as pd 
-import numpy as np
-from datetime import date, datetime, timedelta
-import urllib3
-import json
-import requests 
-import time
-import random
-import lxml
-import lxml.html
-import json
+#import pandas as pd 
+#import numpy as np
+#from datetime import date, datetime, timedelta
+#import urllib3
+#import json
+#import requests 
+#import time
+#import random
+##import lxml
+#import lxml.html
+#import json
 
 def BANCO_bci(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
     if prod=='mixta':
