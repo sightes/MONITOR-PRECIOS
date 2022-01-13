@@ -51,8 +51,8 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
     SEG_INC_SIS=float(a[2].text_content().replace('Seguro de Incendio: ','').replace(' UF','').replace(',','.'))+ \
     float(a[3].text_content().replace('Seguro de Sismo:  ','').replace(' UF','').replace(',','.'))
     Dividendo_SSEG=float(a[4].text_content().replace('Dividendo sin los Seguros  :  ','').replace(' UF','').replace(',','.'))
-    a=[float(Tasa),float(CAE),float(Dividendo_SSEG),float(SEG_INC_SIS),float(SEG_DESG),None,None,
-       float(Dividendo_SSEG)+float(SEG_INC_SIS)+float(SEG_DESG),None,plz,float(SEG_INC_SIS)+float(SEG_DESG),None, 
+    a=[float(Tasa),float(CAE),float(Dividendo_SSEG),float(SEG_INC_SIS),float(SEG_DESG),0,0,
+       float(Dividendo_SSEG)+float(SEG_INC_SIS)+float(SEG_DESG),0,plz,float(SEG_INC_SIS)+float(SEG_DESG),0, 
        ValorPropiedad,MontoCre,date.today(),'HIP-FIJA',0,'BCHILE']
   
     a=pd.DataFrame(np.asarray(a).reshape(1,-1))
