@@ -16,8 +16,10 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
   MontoCre=monto
   plazo=plz
   if prod=='mixta':
+      plz_fijo=5
       tipotasa="2"
   else :
+      plz_fijo=0
       tipotasa="1"
   monto=MontoCre
   pie=ValorPropiedad-MontoCre
@@ -81,11 +83,11 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
       MontoCre,
       date.today(),
       'HIP-FIJA',
-      5,
+      plz_fijo,
       'SANTANDER'+CURR_TRAMO ]).reshape(1,-1),columns=col))
       if prod=='mixta':
           tt=tt.dropna()
-          tt['Producto']='HIP-MIX'+ str(5)+'Y'
+          tt['Producto']='HIP-MIX'+ str(plz_fijo)+'Y'
       else :
           tt['Producto']='HIP-FIJA'
   return(tt)#,str(r.data).replace('\\n','').replace('\\r','').replace('\\t',''))
