@@ -27,10 +27,10 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
     http = urllib3.PoolManager()
     result = []
     url = 'https://apiprogram.bci.cl/prod/v1/api-widget-hipotecario/simulation'
-    data =''.join(('{"PurchaseIntentionDate":"01-03-2022","DownPayment":'+monto+',"Term":'+plz+',',
+    data =''.join(('{"PurchaseIntentionDate":"01-03-2022","DownPayment":'+pie+',"Term":'+plz+',',
                 '"PropertyNew":true,"PropertyType":"CASA","PropertyValue":'+valprop+',' ,
                 '"Applicant":{"Email":"a@a.cl","Salary":600000,',
-                '"DocumentNumber":"15654317","SerialNumber":"9"},"FixedRateCredit":true,',
+                '"DocumentNumber":"'+Rut+'","SerialNumber":"'+Dv+'"},"FixedRateCredit":true,',
                 '"YearsFixedRateCredit":'+plz_fijo+',"Refinancing":false,"ProductCode":'+prodcode+',',
                 '"SiteMark":"Publico","SimulationFlowMark":"Comprar","VendorMark":""}'))
     session=requests.Session()
