@@ -45,13 +45,14 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
     for n in [0,1,2]:
         plz=a['Data']['Simulations'][n]['simulation']['Term']
         tasa=a['Data']['Simulations'][n]['simulation']['Rate']
+        CAE=a['Data']['Simulations'][1]['simulation']['EACData']['EACRate']
         divsseg=a['Data']['Simulations'][n]['simulation']['UninsuredDividendUF']
         incseg=a['Data']['Simulations'][n]['simulation']['FireInsuranceAmount']
         desseg=a['Data']['Simulations'][n]['simulation']['DeductionInsuranceAmount']
         totdiv=a['Data']['Simulations'][n]['simulation']['TotalDividendInsuranceUF']
         totdivclp=a['Data']['Simulations'][n]['simulation']['TotalDividendInsurancePesos']
         tt=tt.append(
-        pd.DataFrame(np.asarray([tasa,0,divsseg,incseg,desseg,0,0,totdiv,totdivclp,plz,divsseg+incseg,
+        pd.DataFrame(np.asarray([tasa,CAE,divsseg,incseg,desseg,0,0,totdiv,totdivclp,plz,desseg+incseg,
         totdiv,int(valprop),int(monto),date.today(),'HIP-FIJA',int(plz_fijo),'BCI' ]).reshape(1,-1),columns=col))
     if prod=='mixta':
         tt=tt.dropna()
