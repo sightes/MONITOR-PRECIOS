@@ -10,7 +10,7 @@ import lxml
 import lxml.html
 import json
 
-def BANCO_bci(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
+def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
     if prod=='mixta':
         prodcode='8'
     elif prod =='fija':

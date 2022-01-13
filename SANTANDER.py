@@ -9,7 +9,7 @@ import requests
 import time
 import random
 
-def BANCO_Itau(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
+def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
   rut=Rut
   dv=Dv
   ValorPropiedad=valprop

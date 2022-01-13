@@ -10,7 +10,7 @@ import random
 
 
 
-def BANCO_Bchile(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
+def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
     Rut=Rut;Dv=Dv;ValorPropiedad=valprop;MontoCre=monto;producto=prod;UF=uf;financiamiento=MontoCre/ValorPropiedad;
     pie=ValorPropiedad-MontoCre
     financiamiento=MontoCre/ValorPropiedad
