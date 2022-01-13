@@ -79,7 +79,7 @@ def BANCO_Itau(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
       return(tt)#,str(r.data).replace('\\n','').replace('\\r','').replace('\\t',''))
 
 
-print(BANCO_Itau(Rut='15654317',Dv='9',valprop=3750,monto=3000,plz=20,plz_fijo=3,prod='fija',uf=29650))      
+#print(BANCO_Itau(Rut='15654317',Dv='9',valprop=3750,monto=3000,plz=20,plz_fijo=3,prod='fija',uf=29650))      
 
 
 
