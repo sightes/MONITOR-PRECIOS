@@ -56,14 +56,14 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
     col=['Tasa','CAE','Div_SSEG','SEG_INCSIS','SEG_DESG','PRIM_DIV','COSTO_TOTCRED','TOT_DIVUF','TOT_DIV$','Plazo','TOT_Seg','Dividendo_CSEG','ValorProp','MontoCre','Fecha','Producto','PlazoFijo','Banco']
     tt=pd.DataFrame([], columns=col)
     for n in [0,1,2]:
-        plz=a['calculator'][0]['years_credit']
-        tasa=a['calculator'][0]['annual_rate']
-        CAE=a['calculator'][0]['cae']
-        divsseg=a['calculator'][0]['value_dividend_uf']
-        incseg=a['calculator'][0]['safe_eire_earthquake']
-        desseg=a['calculator'][0]['insurance_uf']
-        totdiv=a['calculator'][0]['value_dividend_uf']
-        totdivclp=a['calculator'][0]['value_dividend']
+        plz=float(a['calculator'][0]['years_credit'])
+        tasa=float(a['calculator'][0]['annual_rate'])
+        CAE=float(a['calculator'][0]['cae'])
+        divsseg=float(a['calculator'][0]['value_dividend_uf'])
+        incseg=float(a['calculator'][0]['safe_eire_earthquake'])
+        desseg=float(a['calculator'][0]['insurance_uf'])
+        totdiv=float(a['calculator'][0]['value_dividend_uf'])
+        totdivclp=float(a['calculator'][0]['value_dividend'])
         tt=tt.append(
         pd.DataFrame(np.asarray([tasa,CAE,divsseg,incseg,desseg,0,0,totdiv,totdivclp,plz,desseg+incseg,
         totdiv,int(valprop),int(monto),date.today(),'HIP-FIJA',int(plz_fijo),'SCOTIABANK' ]).reshape(1,-1),columns=col))
