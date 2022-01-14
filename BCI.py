@@ -44,14 +44,14 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
     col=['Tasa','CAE','Div_SSEG','SEG_INCSIS','SEG_DESG','PRIM_DIV','COSTO_TOTCRED','TOT_DIVUF','TOT_DIV$','Plazo','TOT_Seg','Dividendo_CSEG','ValorProp','MontoCre','Fecha','Producto','PlazoFijo','Banco']
     tt=pd.DataFrame([], columns=col)
     for n in [0,1,2]:
-        plz=a['Data']['Simulations'][n]['simulation']['Term']
-        tasa=a['Data']['Simulations'][n]['simulation']['Rate']
-        CAE=a['Data']['Simulations'][1]['simulation']['EACData']['EACRate']
-        divsseg=a['Data']['Simulations'][n]['simulation']['UninsuredDividendUF']
-        incseg=a['Data']['Simulations'][n]['simulation']['FireInsuranceAmount']
-        desseg=a['Data']['Simulations'][n]['simulation']['DeductionInsuranceAmount']
-        totdiv=a['Data']['Simulations'][n]['simulation']['TotalDividendInsuranceUF']
-        totdivclp=a['Data']['Simulations'][n]['simulation']['TotalDividendInsurancePesos']
+        plz=float(a['Data']['Simulations'][n]['simulation']['Term'])
+        tasa=float(a['Data']['Simulations'][n]['simulation']['Rate'])
+        CAE=float(a['Data']['Simulations'][1]['simulation']['EACData']['EACRate'])
+        divsseg=float(a['Data']['Simulations'][n]['simulation']['UninsuredDividendUF'])
+        incseg=float(a['Data']['Simulations'][n]['simulation']['FireInsuranceAmount'])
+        desseg=float(a['Data']['Simulations'][n]['simulation']['DeductionInsuranceAmount'])
+        totdiv=float(a['Data']['Simulations'][n]['simulation']['TotalDividendInsuranceUF'])
+        totdivclp=int(a['Data']['Simulations'][n]['simulation']['TotalDividendInsurancePesos'])
         tt=tt.append(
         pd.DataFrame(np.asarray([tasa,CAE,divsseg,incseg,desseg,0,0,totdiv,totdivclp,plz,desseg+incseg,
         totdiv,int(valprop),int(monto),date.today(),'HIP-FIJA',int(plz_fijo),'BCI' ]).reshape(1,-1),columns=col))
@@ -64,5 +64,4 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
     return(tt)
 
 
-
-#print(BANCO_bci(Rut='15654317',Dv='9',valprop=3750,monto=3000,plz=20,plz_fijo=2,prod='mixta',uf=29650))  
+#print(simulador(Rut='15654317',Dv='9',valprop=3750,monto=3000,plz=20,plz_fijo=5,prod='mixta',uf=29650))       

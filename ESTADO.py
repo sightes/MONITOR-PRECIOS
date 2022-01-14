@@ -78,38 +78,38 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
     }
     , verify=False )
     root=lxml.html.fromstring(r.text)
-    Tasas=[root.xpath("////*/td[text() = 'Tasa Anual %' ]/ancestor::tr/td[2]")[i].text for i in range(1,5)]
-    divsseg=[root.xpath("////*/td[text() = 'Dividendo sin seguro en UF' ]/ancestor::tr/td[2]")[i].text for i in range(1,5)]
+    Tasas=[root.xpath("////*/td[text() = 'Tasa Anual %' ]/ancestor::tr/td[2]")[i].text.replace(',','.') for i in range(1,5)]
+    divsseg=[root.xpath("////*/td[text() = 'Dividendo sin seguro en UF' ]/ancestor::tr/td[2]")[i].text.replace(',','.') for i in range(1,5)]
     divssegclp=[root.xpath("////*/td[text() = 'Dividendo sin seguro en $' ]/ancestor::tr/td[2]")[i].text for i in range(1,5)]
-    divcseg=[root.xpath("////*/td[text() = 'Dividendo con seguro en UF' ]/ancestor::tr/td[2]")[i].text for i in range(1,5)]
-    divcsegclp=[root.xpath("////*/td[text() = 'Dividendo con seguro en $' ]/ancestor::tr/td[2]")[i].text for i in range(1,5)]
-    cae=[root.xpath("////*/td[text() = 'Carga Anual Equivalente (CAE)' ]/ancestor::tr/td["+str(i)+"]")[0].text  for i in range(2,6)]
+    divcseg=[root.xpath("////*/td[text() = 'Dividendo con seguro en UF' ]/ancestor::tr/td[2]")[i].text.replace(',','.') for i in range(1,5)]
+    divcsegclp=[root.xpath("////*/td[text() = 'Dividendo con seguro en $' ]/ancestor::tr/td[2]")[i].text.replace('.','') for i in range(1,5)]
+    cae=[root.xpath("////*/td[text() = 'Carga Anual Equivalente (CAE)' ]/ancestor::tr/td["+str(i)+"]")[0].text.replace(',','.')  for i in range(2,6)]
     plz=[root.xpath("////*/th[@class= 'elegida' ]/ancestor::tr/th["+str(i)+"]")[1].text for i in range(2,6)]
     col=['Tasa','CAE','Div_SSEG','SEG_INCSIS','SEG_DESG',
     'PRIM_DIV','COSTO_TOTCRED','TOT_DIVUF','TOT_DIV$','Plazo',
     'TOT_Seg','Dividendo_CSEG','ValorProp','MontoCre','Fecha',
     'Producto','PlazoFijo','Banco']
     tt=pd.DataFrame([], columns=col)
-    tt['Tasa']=float(Tasas)
-    tt['CAE']=float(cae)
-    tt['Div_SSEG']=float(divsseg)
+    tt['Tasa']=list(map(float, Tasas))
+    tt['CAE']=list(map(float,cae))
+    tt['Div_SSEG']=list(map(float,divsseg))
     tt['SEG_INCSIS']=0
     tt['SEG_DESG']=0
     tt['PRIM_DIV']=0
     tt['COSTO_TOTCRED']=0
-    tt['TOT_DIVUF']=float(divcseg)
-    tt['TOT_DIV$']=float(divcsegclp)
-    tt['Plazo']=int(plz)
+    tt['TOT_DIVUF']=list(map(float,divcseg))
+    tt['TOT_DIV$']=list(map(int,divcsegclp))
+    tt['Plazo']=list(map(int,plz))
     tt['TOT_Seg']=0
-    tt['Dividendo_CSEG']=int(divcseg)
+    tt['Dividendo_CSEG']=list(map(float,divcseg))
     tt['ValorProp']=int(valprop)
     tt['MontoCre']=int(monto)
     tt['Fecha']=date.today()
     tt['Producto']='HIP-FIJA'
     tt['PlazoFijo']=0
     tt['Banco']='ESTADO'
-    
-    tt=tt.iloc[np.where(tt.Plazo==str(iniplz))]
+
+    #tt=tt.iloc[np.where(tt.Plazo==str(iniplz))]
     tt=tt.drop_duplicates() 
     return(tt)
 #print(simulador(Rut='15654317',Dv='9',valprop=3750,monto=3000,plz=20,plz_fijo=5,prod='mixta',uf=29650))     
