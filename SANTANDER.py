@@ -90,6 +90,7 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
           tt['Producto']='HIP-MIX'+ str(plz_fijo)+'Y'
       else :
           tt['Producto']='HIP-FIJA'
+  tt=tt.drop_duplicates()         
   return(tt)#,str(r.data).replace('\\n','').replace('\\r','').replace('\\t',''))
 
 #print(BANCO_Itau(Rut='15654317',Dv='9',valprop=3750,monto=3000,plz=5,plz_fijo=5,prod='mixta',uf=29650))      

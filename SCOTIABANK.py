@@ -82,4 +82,5 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
         tt['Producto']='HIP-FIJA'
         
     tt=tt.round(2) 
+    tt=tt.drop_duplicates() 
     return(tt)

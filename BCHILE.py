@@ -60,6 +60,7 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
        'COSTO_TOTCRED', 'TOT_DIVUF', 'TOT_DIV$', 'Plazo', 'TOT_Seg',
        'Dividendo_CSEG', 'ValorProp', 'MontoCre', 'Fecha', 'Producto',
        'PlazoFijo', 'Banco']
+    a=a.drop_duplicates()   
     return(a)#,str(r.data).replace('\\n','').replace('\\r','').replace('\\t',''))
 
 

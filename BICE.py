@@ -67,6 +67,7 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
         tt=tt.append(
                 pd.DataFrame(np.asarray([tasa,CAE,divsseg,incseg,desseg,0,0,totdiv,totdivclp,plz,desseg+incseg,
                 totdiv,int(ValorPropiedad),int(MontoCre),date.today(),'HIP-FIJA',0,'BICE' ]).reshape(1,-1),columns=col))
+        tt=tt.drop_duplicates()   
         return(tt)
 
 ##print(simulador(Rut='15654317',Dv='9',valprop=3750,monto=3000,plz=5,plz_fijo=5,prod='mixta',uf=29650))
