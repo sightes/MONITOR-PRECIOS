@@ -90,20 +90,20 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
     'TOT_Seg','Dividendo_CSEG','ValorProp','MontoCre','Fecha',
     'Producto','PlazoFijo','Banco']
     tt=pd.DataFrame([], columns=col)
-    tt['Tasa']=Tasas
-    tt['CAE']=cae
-    tt['Div_SSEG']=divsseg
+    tt['Tasa']=float(Tasas)
+    tt['CAE']=float(cae)
+    tt['Div_SSEG']=float(divsseg)
     tt['SEG_INCSIS']=0
     tt['SEG_DESG']=0
     tt['PRIM_DIV']=0
     tt['COSTO_TOTCRED']=0
-    tt['TOT_DIVUF']=divcseg
-    tt['TOT_DIV$']=divcsegclp
-    tt['Plazo']=plz
+    tt['TOT_DIVUF']=float(divcseg)
+    tt['TOT_DIV$']=float(divcsegclp)
+    tt['Plazo']=int(plz)
     tt['TOT_Seg']=0
-    tt['Dividendo_CSEG']=divcseg
-    tt['ValorProp']=valprop
-    tt['MontoCre']=monto
+    tt['Dividendo_CSEG']=int(divcseg)
+    tt['ValorProp']=int(valprop)
+    tt['MontoCre']=int(monto)
     tt['Fecha']=date.today()
     tt['Producto']='HIP-FIJA'
     tt['PlazoFijo']=0
