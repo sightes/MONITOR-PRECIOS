@@ -15,6 +15,7 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
         prodcode='8'
     elif prod =='fija':
         prodcode='23'
+        plz_fijo=0
     else:
         print('Producto no existe') 
     plz_fijo=str(plz_fijo)
