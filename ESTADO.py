@@ -9,6 +9,7 @@ import time
 import random
 
 def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
+    iniplz=plz
     from urllib3.exceptions import InsecureRequestWarning 
     requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
     http = urllib3.PoolManager()
@@ -107,5 +108,7 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
     tt['Producto']='HIP-FIJA'
     tt['PlazoFijo']=0
     tt['Banco']='ESTADO'
+    
+    tt=tt.iloc[np.where(tt.Plazo==str(iniplz))]
     return(tt)
 #print(simulador(Rut='15654317',Dv='9',valprop=3750,monto=3000,plz=20,plz_fijo=5,prod='mixta',uf=29650))     
