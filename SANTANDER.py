@@ -62,10 +62,10 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
       ## cae
       records = root.xpath("////*/td[text() = 'Carga Anual Equivalente (CAE)' ]/ancestor::tr/td[2]/strong")
       cae = [ record.text.replace('%','').strip().replace(',','.') for record in records]
-      t_sleep=random.randrange(10,15)
+      t_sleep=random.randrange(25,30)
       #t_sleep=35
       time.sleep(t_sleep)
-      print('Durmiendo '+str(t_sleep)+ 'Seg ....ZzZzZzZzZzZzZzZ')
+      print('Pausa para no sobrecargar servidor'+str(t_sleep)+ 'Seg :)')
 
       tt=tt.append(pd.DataFrame(np.asarray([float(tasa[0]),
       float(cae[0]),
