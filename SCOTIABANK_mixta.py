@@ -79,7 +79,7 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
      tt['Fecha']=date.today()
      tt['Producto']='HIP-FIJA'
      tt['PlazoFijo']=plz_fijo
-     tt['Banco']='ESTADO'
+     tt['Banco']='SCOTIABANK'
      if prod=='mixta':
           tt=tt.dropna()
           tt['Producto']='HIP-MIX'+ str(plz_fijo)+'Y'
