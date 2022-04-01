@@ -21,7 +21,7 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
     elif producto =='fija':
       PROD=4
       PLZFIJO=0
-      RESHA=16
+      RESHA=21
       PLZVAR=0
     else: 
       print('Producto no existe')
@@ -80,4 +80,4 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
       tt=tt.drop_duplicates() 
       return(tt)#,str(r.data).replace('\\n','').replace('\\r','').replace('\\t',''))
 
-#print(simulador(Rut='15654317',Dv='9',valprop=3750,monto=3000,plz=20,plz_fijo=5,prod='fija',uf=29650))   
+print(simulador(Rut='15654317',Dv='9',valprop=3750,monto=3000,plz=20,plz_fijo=2,prod='mixta',uf=29650))   
