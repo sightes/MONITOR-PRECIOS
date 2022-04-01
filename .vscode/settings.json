@@ -1,0 +1,32 @@
+{
+    "sqltools.connections": [
+        {
+            "mssqlOptions": {
+                "appName": "SQLTools",
+                "useUTC": true,
+                "encrypt": true
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 1433,
+            "askForPassword": true,
+            "driver": "MSSQL",
+            "name": "PRECIOS",
+            "connectString": "server=161.131.247.5;database=suq;Integrated Security=true;User ID=corporacionbci\\sulloaq;Password=s.202203"
+        },
+        {
+            "mssqlOptions": {
+                "appName": "SQLTools",
+                "useUTC": true,
+                "encrypt": true
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 1433,
+            "askForPassword": true,
+            "driver": "MSSQL",
+            "name": "MEDIOS PAGO",
+            "connectString": "server=161.131.247.101;Integrated Security=true;User ID=corporacionbci\\sulloaq;Password=s.202203"
+        }
+    ]
+}
