@@ -24,12 +24,18 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
 
      if prod=='mixta' and plz_fijo==3:
           tipotasa="MA"
+          nrange=8
+          nplazos=[5,8,10,12,15,20,25]  
      elif prod=='mixta' and plz_fijo==5:
           tipotasa="MI"
+          nrange=7
+          nplazos=[8,10,12,15,20,25] 
      elif prod=='mixta' and plz_fijo==8:
           tipotasa="MO"
+          nrange=6
+          nplazos=[10,12,15,20,25]  
      else :
-          tipotasa="ME"     
+          tipotasa="ME"       
      
      url = 'https://www.scotiabank.cl/cgi-bin/emula?TRANS=vt_SimCreHipCae&TMPL=/emulacion/resultado_simulacion.htm& \
      UF=@UF&vpro=@VPROP&vcre=@MCRE&finalidad=V%20%20%20&dfl2=N&porfin=@PORC&estado=0001&gracia=0&tipocre=@tipotasa& \
@@ -55,14 +61,14 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
      root = lxml.html.fromstring(r.data)
      col=['Tasa','Dividendo_SSEG','SEG_DESG','SEG_INC_SIS','CAE']
      curr_table=pd.DataFrame([],columns=col)
-     for n_row in range(1,8):
+     for n_row in range(1,nrange):
         records = root.xpath("////*/th[ contains(text(),'Tasa') ]/ancestor::table/tbody/tr[position()="+ str(n_row) +"]/td[position()>0]")
         curr_table=curr_table.append(pd.DataFrame(np.asarray([ records[:][i].text.replace( ' ' ,'').replace('$','').replace('UF','').replace('%','').strip().replace('.', '').replace(',','.') for i in [1,2,3,4,6]]).reshape(1,-1),
                  columns=col),ignore_index=True)
      curr_table['Plazo']=[5,8,10,12,15,20,25]  
      curr_table=curr_table.iloc[np.where(curr_table.Plazo==Plazo)].astype('float')
      tt=pd.DataFrame([])
-     tt['Tasa']=curr_table['Tasa']
+     tt['Tasa']=nplazos
      tt['CAE']=curr_table['CAE']
      tt['Div_SSEG']=curr_table['Dividendo_SSEG']
      tt['SEG_INCSIS']=curr_table['SEG_INC_SIS']
@@ -87,6 +93,6 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
           tt['Producto']='HIP-FIJA'
      tt=tt.drop_duplicates()
      
-     
+
      return (tt)
-#print(simulador(Rut='15654317',Dv='9',valprop=3750,monto=3000,plz=20,plz_fijo=3,prod='mixta',uf=31740)) 
+print(simulador(Rut='15654317',Dv='9',valprop=3750,monto=3000,plz=20,plz_fijo=3,prod='mixta',uf=31740)) 
