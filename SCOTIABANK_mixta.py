@@ -65,10 +65,10 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
         records = root.xpath("////*/th[ contains(text(),'Tasa') ]/ancestor::table/tbody/tr[position()="+ str(n_row) +"]/td[position()>0]")
         curr_table=curr_table.append(pd.DataFrame(np.asarray([ records[:][i].text.replace( ' ' ,'').replace('$','').replace('UF','').replace('%','').strip().replace('.', '').replace(',','.') for i in [1,2,3,4,6]]).reshape(1,-1),
                  columns=col),ignore_index=True)
-     curr_table['Plazo']=[5,8,10,12,15,20,25]  
+     curr_table['Plazo']= nplazos  
      curr_table=curr_table.iloc[np.where(curr_table.Plazo==Plazo)].astype('float')
      tt=pd.DataFrame([])
-     tt['Tasa']=nplazos
+     tt['Tasa']=curr_table['Tasa']
      tt['CAE']=curr_table['CAE']
      tt['Div_SSEG']=curr_table['Dividendo_SSEG']
      tt['SEG_INCSIS']=curr_table['SEG_INC_SIS']
