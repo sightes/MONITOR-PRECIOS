@@ -78,13 +78,13 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
     }
     , verify=False )
     root=lxml.html.fromstring(r.text)
-    Tasas=[root.xpath("////*/td[text() = 'Tasa Anual %' ]/ancestor::tr/td[2]")[i].text.replace(',','.') for i in range(1,5)]
-    divsseg=[root.xpath("////*/td[text() = 'Dividendo sin seguro en UF' ]/ancestor::tr/td[2]")[i].text.replace(',','.') for i in range(1,5)]
-    divssegclp=[root.xpath("////*/td[text() = 'Dividendo sin seguro en $' ]/ancestor::tr/td[2]")[i].text for i in range(1,5)]
-    divcseg=[root.xpath("////*/td[text() = 'Dividendo con seguro en UF' ]/ancestor::tr/td[2]")[i].text.replace(',','.') for i in range(1,5)]
-    divcsegclp=[root.xpath("////*/td[text() = 'Dividendo con seguro en $' ]/ancestor::tr/td[2]")[i].text.replace('.','') for i in range(1,5)]
-    cae=[root.xpath("////*/td[text() = 'Carga Anual Equivalente (CAE)' ]/ancestor::tr/td["+str(i)+"]")[0].text.replace(',','.')  for i in range(2,6)]
-    plz=[root.xpath("////*/th[@class= 'elegida' ]/ancestor::tr/th["+str(i)+"]")[1].text for i in range(2,6)]
+    Tasas=[root.xpath("////*/td[text() = 'Tasa Anual %' ]/ancestor::tr/td[2]")[i].text.replace(',','.') for i in range(1,7)]
+    divsseg=[root.xpath("////*/td[text() = 'Dividendo sin seguro en UF' ]/ancestor::tr/td[2]")[i].text.replace(',','.') for i in range(1,7)]
+    divssegclp=[root.xpath("////*/td[text() = 'Dividendo sin seguro en $' ]/ancestor::tr/td[2]")[i].text for i in range(1,7)]
+    divcseg=[root.xpath("////*/td[text() = 'Dividendo con seguro en UF' ]/ancestor::tr/td[2]")[i].text.replace(',','.') for i in range(1,7)]
+    divcsegclp=[root.xpath("////*/td[text() = 'Dividendo con seguro en $' ]/ancestor::tr/td[2]")[i].text.replace('.','') for i in range(1,7)]
+    cae=[root.xpath("////*/td[text() = 'Carga Anual Equivalente (CAE)' ]/ancestor::tr/td["+str(i)+"]")[0].text.replace(',','.')  for i in range(2,8)]
+    plz=[root.xpath("////*/th[@class= 'elegida' ]/ancestor::tr/th["+str(i)+"]")[1].text for i in range(2,8)]
     col=['Tasa','CAE','Div_SSEG','SEG_INCSIS','SEG_DESG',
     'PRIM_DIV','COSTO_TOTCRED','TOT_DIVUF','TOT_DIV$','Plazo',
     'TOT_Seg','Dividendo_CSEG','ValorProp','MontoCre','Fecha',

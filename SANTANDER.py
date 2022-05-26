@@ -24,7 +24,7 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
   monto=MontoCre
   pie=ValorPropiedad-MontoCre
   http = urllib3.PoolManager()
-  rutDv = rut.replace(',','.') + '-' +dv
+  rutDv = rutDv = f"{int(rut):,}".replace(',','.') + '-' +dv
   ## rut formato 9.999.999-9
   result = pd.DataFrame([],columns=['Banco','Tasa','Dividendo_SSEG','SEG_DESG','SEG_INC_SIS','CAE','Plazo'])
   url = 'https://www.santander.cl/simuladores/simulador_hipotecario/simulacion.asp'
@@ -39,7 +39,7 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
       #                                      ['120','2.5-5'],['110','>5']] , columns=['COD', 'TRAMO'])
       Tramos_Renta_SANT=pd.DataFrame( [['156','0.55-0.8'],['131','1.3-1.7'],['120','2.5-5'],['110','>5']] , columns=['COD', 'TRAMO'])
       CURR_TRAMO=Tramos_Renta_SANT.iloc[np.where(Tramos_Renta_SANT.COD==dtramo)[0][0]].TRAMO
-      data = "montoCalculado="+ str(monto) + "&noaprob=0&camp_id=&valcamp=&d_pin=&uf=" + str(float(uf)) + "&IDLOGIN=BancoSantander&o=&val1=&cl=false&origen=PB&utm_source=&utm_medium=&utm_campaign=&utm_term=&utm_content=&id_gdconv=" + datetime.now().strftime('%Y%m%d%H:%M:%S') +"&d_rut="+ rutDv +"&rut="+ rutDv + "&nombre=a&apaterno=b&amaterno=c&email=a@b.com&codigoarea=&telefono=&fec_fono=&region=&comuna=SANTIAGO+CENTRO&valor_propiedad="+str(ValorPropiedad)+"&valor_propiedad2=&valor_pie="+str(pie)+"&monto="+str(MontoCre)+"&monto2=&porcentaj="+ str(int(100*((MontoCre)/(ValorPropiedad)))) +"&plazo=" + str(plazo) + "&tipo_tasa="+ tipotasa +"&propiedad=Casa&tipo_propiedad=Nueva&sg_desgravamen=1&sg_incendio=1&dtramo="+ dtramo +"&valuedtramo=&opc=&otrorut=&region1=RM&comuna1=SANTIAGO+CENTRO&z=&valorpyme=false"
+      data = "montoCalculado="+ f"{monto:,}".replace(',','.') + "&noaprob=0&camp_id=&valcamp=&d_pin=&uf=" + f"{uf:,}".replace(',','.') + "%2C34&IDLOGIN=BancoSantander&o=&val1=&cl=false&origen=PB&utm_source=&utm_medium=&utm_campaign=&utm_term=&utm_content=&id_gdconv=" + datetime.now().strftime('%Y%m%d') +"9%3A49%3A23&d_rut="+ rutDv +"&rut=&nombre=sad&apaterno=asd&amaterno=asd&email=a@b.com&codigoarea=2&telefono=22222222&fec_fono=26-5-2022&region=&comuna=BUIN&valor_propiedad="+f"{ValorPropiedad:,}".replace(',','.')+"&valor_propiedad2="+f"{(ValorPropiedad-pie):,}".replace(',','.')+"&valor_pie="+f"{pie:,}".replace(',','.')+"&monto="+f"{MontoCre:,}".replace(',','.')+"&monto2="+f"{MontoCre:,}".replace(',','.')+"&porcentaj="+ str(int(100*((MontoCre)/(ValorPropiedad)))) +"&plazo=" + str(plazo) + "&tipo_tasa="+ tipotasa +"&propiedad=Casa&tipo_propiedad=Nueva&sg_desgravamen=1&sg_incendio=1&dtramo="+ dtramo +"&valuedtramo=&opc=&otrorut=&region1=RM&comuna1=BUIN&z=&valorpyme="                                                                                                                                                                                                                              
       session=requests.Session()
       session.verify=False
       r = session.post( url,data, \

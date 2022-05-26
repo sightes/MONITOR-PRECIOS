@@ -44,12 +44,17 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
         a=json.loads(r3.text)
         tasas=[]
         for i in range(0,len(a[0]['tarifas'])):
-            tasas.append([
-                float(a[0]['tarifas'][i]['Tasa']),
-                int(a[0]['tarifas'][i]['MontoUFinicial']),
-                int(a[0]['tarifas'][i]['MontoUFFinal']),
-                int(a[0]['tarifas'][i]['PlazoMinimo']),
-                int(a[0]['tarifas'][i]['PlazoMaximo'])])
+                try :
+                        aux=a[0]['tarifas'][i]['Tasa']
+                except:
+                        print('')
+                else:    
+                        tasas.append([
+                        float(a[0]['tarifas'][i]['Tasa']),
+                        int(a[0]['tarifas'][i]['MontoUFinicial']),
+                        int(a[0]['tarifas'][i]['MontoUFFinal']),
+                        int(a[0]['tarifas'][i]['PlazoMinimo']),
+                        int(a[0]['tarifas'][i]['PlazoMaximo'])])
         tasas=pd.DataFrame(tasas,columns=['tasa','montoini','montofin','plazoini','plazofin']).round(2)
         tasas=tasas.iloc[np.where((tasas.montoini<=max(MontoCre,1000))&
         (tasas.montofin>=max(MontoCre,1000))&(tasas.plazoini<=max(plazo,8))&
@@ -70,4 +75,4 @@ def simulador(Rut=0,Dv='',valprop=0,monto=0,plz=0,plz_fijo=0,prod='',uf=0):
         tt=tt.drop_duplicates()   
         return(tt)
 
-#print(simulador(Rut='15654317',Dv='9',valprop=3750,monto=3000,plz=5,plz_fijo=5,prod='mixta',uf=29650))
+#print(simulador(Rut='15654317',Dv='9',valprop=3750,monto=3000,plz=15,plz_fijo=20,prod='fija',uf=32000))
