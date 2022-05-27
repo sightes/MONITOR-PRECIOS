@@ -108,5 +108,5 @@ def simulador(monto,plz):
     aux1['producto']='SIMULADOR_SBIF'    
     return(aux1)
 
-print(simulador(2800,plz=15))
+#print(simulador(2800,plz=15))
 
