@@ -37,11 +37,17 @@ def simulador(monto,plz):
         dividendo=root.xpath("////*/div[@id = 'simuladorCreditoHipotecario']/table/tbody/tr["+ str(i) + "]/td")[2].text
         dividendo=dividendo.replace('\xa0','').replace('$','').replace('UF','').replace('\n','').replace('.','').replace(',','.').replace('\t','').replace(' ','')
         moneda=root.xpath("////*/div[@id = 'simuladorCreditoHipotecario']/table/tbody/tr["+ str(i) + "]/td")[3].text
-        tasa=root.xpath("////*/div[@id = 'simuladorCreditoHipotecario']/table/tbody/tr["+ str(i) + "]/td")[4].text
-        CAE=root.xpath("////*/div[@id = 'simuladorCreditoHipotecario']/table/tbody/tr["+ str(i) + "]/td")[5].text
+        tipotasa=root.xpath("////*/div[@id = 'simuladorCreditoHipotecario']/table/tbody/tr["+ str(i) + "]/td")[4].text
+        tasa=root.xpath("////*/div[@id = 'simuladorCreditoHipotecario']/table/tbody/tr["+ str(i) + "]/td")[5].text
+        tasa=tasa.replace('\xa0','').replace('$','').replace('UF','').replace('\n','').replace('.','').replace(',','.').replace('\t','').replace(' ','').replace('%','')
+    
+        CAE=root.xpath("////*/div[@id = 'simuladorCreditoHipotecario']/table/tbody/tr["+ str(i) + "]/td")[6].text
         CAE=CAE.replace('\xa0','').replace('$','').replace('UF','').replace('\n','').replace('.','').replace(',','.').replace('\t','').replace(' ','').replace('%','')
-        aux1=aux1+[[banco,tipo,dividendo,moneda,tasa,CAE]]
-    aux1=pd.DataFrame(aux1,columns=['banco','tipo','dividendo','moneda','tasa','CAE'])
+    
+        
+        
+        aux1=aux1+[[banco,tipo,dividendo,moneda,tipotasa,tasa,CAE]]
+    aux1=pd.DataFrame(aux1,columns=['banco','tipo','dividendo','moneda','tipotasa','tasa','CAE'])
     ## part1 
     a=root.xpath("////*/div[contains(@id,'targetSimulacion')]/div[1]/ul[1]/li[contains(@class,'list-group-item')]")
     aux=[]
@@ -108,5 +114,6 @@ def simulador(monto,plz):
     aux1['producto']='SIMULADOR_SBIF'    
     return(aux1)
 
-#print(simulador(2800,plz=15))
+print(simulador(2800,15))
+
 
