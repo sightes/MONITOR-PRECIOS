@@ -1,4 +1,4 @@
-def simulador(monto=3000,plz=20,uf=32606):
+def simulador(monto,plz):
     import pandas as pd 
     import numpy as np
     from datetime import date, datetime, timedelta
@@ -108,5 +108,5 @@ def simulador(monto=3000,plz=20,uf=32606):
     aux1['producto']='SIMULADOR_SBIF'    
     return(aux1)
 
+print(simulador(2800,plz=15))
 
-##print(simulador(2800,plz=15,uf=32606))
